@@ -1,0 +1,8 @@
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+
+.eventDesc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
