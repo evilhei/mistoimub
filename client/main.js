@@ -3,8 +3,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-var lat, lon
+var lat, lon, events
+var distance = 3000
 
+/*
 Template.hello.onCreated(function helloOnCreated() {
 if ("geolocation" in navigator) {
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -16,18 +18,36 @@ navigator.geolocation.getCurrentPosition(function(position) {
 	lon = 25.5974
 }
 });
+*/
+
+lat = 59.434316
+lon = 24.745185
 
 Template.hello.events({
   'click button'(event, instance) {
-  	console.log(lat, lon)
-    var distance = 10000
     Meteor.call('getEvents',
     	lat, lon, distance, function(err, res) {
   if (err) {
     alert(err);
   } else {
-    console.log(res)
+  	Session.set("Events", res)
+  		var events = Session.get("Events");
+  		console.log(events)
   }
 });
 }
 });
+
+
+
+Template.hello.helpers({
+	events: function() {
+	var events = Session.get("Events");
+	if (!_.isEmpty(events)){
+	  	return events.data.events
+		}
+	else {
+		return []
+	}
+	}
+})

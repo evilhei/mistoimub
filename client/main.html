@@ -3,11 +3,26 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-  {{> hello}}
+  <div class="container">
+    <h1>Welcome to Events!</h1>
+    {{> hello}}
+  </div>
 </body>
 
 <template name="hello">
   <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    <div class="row">
+    {{#each events}}
+      <div class="col s4">
+            <img src={{coverPicture}} alt="Mountain View" style="width:304px;height:228px;">
+            <br><p class="eventDesc">{{description}}</p>
+            <br><p>{{startTime}}</p>
+            <br><p>City: {{venue.location.city}} Venue: {{venue.name}}</p>
+      </div>
+      {{/each}}
+    </div>
+
+
 </template>
+
+
