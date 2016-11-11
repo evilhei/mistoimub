@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
 import './main.html';
 
 var lat, lon, events
@@ -19,6 +18,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
 }
 });
 */
+
+
 
 lat = 59.434316
 lon = 24.745185
