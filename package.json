@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "future": "^2.3.1",
     "geocoder": "^0.2.2",
     "materialize-css": "^0.97.8",
     "meteor-node-stubs": "~0.2.0"

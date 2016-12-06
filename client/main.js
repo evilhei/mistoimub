@@ -36,25 +36,23 @@ navigator.geolocation.getCurrentPosition(function(position) {
 Template.hello.events({
   'click #searchEvents'(event, instance) {
   delete events;
-  console.log(events)
   location = document.getElementById("pac-input").value;
-  console.log(location)
-    Meteor.call('geCoordinates',
-      distance, location, function(err, res) {
+  Meteor.call('geCoordinates',
+    distance, location, function(err, res) {
   if (err) {
-    alert(err);
+    alert(err + " hello baby");
   } else {
+    console.log(res + "töötab???")
     url = res;
-    console.log(url)
     Meteor.call('getEvents', url, function(err, res) {
       if (err) {
         alert(err)
 
       } else {
+        console.log(res)
         Session.set("Events", res)
         var events = Session.get("Events");
         Blaze.render(Template.eventsData, document.getElementById('eventsData'))
-        console.log(events)
       }
     })
   }
@@ -66,6 +64,7 @@ Template.eventsData.helpers({
 	events: function() {
 	var events = Session.get("Events");
 	if (!_.isEmpty(events)){
+    console.log(events.data.events)
 	  	return events.data.events
 		}
 	else {
